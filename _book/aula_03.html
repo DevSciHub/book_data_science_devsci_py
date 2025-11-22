@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Estrutura de dados – Introdução à Linguagem Python</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./aula_04.html" rel="next">
+<link href="./aula_02.html" rel="prev">
+<link href="./img/Logo_Grande_DevSci_Sem_Fundo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d6a0e15d61f333cbf1c86cc41d640462.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./aula_03.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estrutura de dados</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./img/capa_introducao_a_python.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introdução à Linguagem Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aula_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Nivelamento - Operações Básicas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aula_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Operadores Lógicos e Operadores de Comparação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aula_03.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estrutura de dados</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aula_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funções</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aula_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Iterações - Estrutura de Repetição</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aula_06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">DataFrame</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aula_07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Importação de Dados</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#tuplas-em-python" id="toc-tuplas-em-python" class="nav-link active" data-scroll-target="#tuplas-em-python"><span class="header-section-number">3.1</span> Tuplas em Python</a>
+  <ul class="collapse">
+  <li><a href="#características" id="toc-características" class="nav-link" data-scroll-target="#características"><span class="header-section-number">3.1.1</span> Características</a></li>
+  </ul></li>
+  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">3.2</span> Listas</a>
+  <ul class="collapse">
+  <li><a href="#caraterísticas" id="toc-caraterísticas" class="nav-link" data-scroll-target="#caraterísticas"><span class="header-section-number">3.2.1</span> Caraterísticas</a></li>
+  <li><a href="#tuplas-e-listas" id="toc-tuplas-e-listas" class="nav-link" data-scroll-target="#tuplas-e-listas"><span class="header-section-number">3.2.2</span> Tuplas e listas</a></li>
+  </ul></li>
+  <li><a href="#conjuntos" id="toc-conjuntos" class="nav-link" data-scroll-target="#conjuntos"><span class="header-section-number">3.3</span> Conjuntos</a>
+  <ul class="collapse">
+  <li><a href="#caraterísticas-1" id="toc-caraterísticas-1" class="nav-link" data-scroll-target="#caraterísticas-1"><span class="header-section-number">3.3.1</span> Caraterísticas</a></li>
+  </ul></li>
+  <li><a href="#dicionários" id="toc-dicionários" class="nav-link" data-scroll-target="#dicionários"><span class="header-section-number">3.4</span> Dicionários</a>
+  <ul class="collapse">
+  <li><a href="#caraterísticas-2" id="toc-caraterísticas-2" class="nav-link" data-scroll-target="#caraterísticas-2"><span class="header-section-number">3.4.1</span> Caraterísticas</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Estrutura de dados</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="8db9fad8" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="tuplas-em-python" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="tuplas-em-python"><span class="header-section-number">3.1</span> Tuplas em Python</h2>
+<p>Em Python, uma tupla é uma estrutura de dados semelhante a uma lista, mas com uma diferença fundamental: as <strong>tuplas são imutáveis</strong>, uma vez que você criar uma tupla <strong>não poderá alterar seus elementos ou adicionar/remover elementos</strong>. As tuplas são definidas por uma sequência ordenada de elementos entre parênteses e separados por vírgulas.</p>
+<div id="eed01e7f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tickers_tupla <span class="op">=</span> (<span class="st">'TOTS3.SA'</span>, <span class="st">'^BVSP'</span>, <span class="st">'PETR3.SA'</span>, <span class="st">'MGLU3.SA'</span>, <span class="st">'HAPV3.SA'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>comprimento_tupla <span class="op">=</span> <span class="bu">len</span>(tickers_tupla)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tupla:"</span>, tickers_tupla, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_tupla), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Comprimento:"</span>, comprimento_tupla, <span class="st">"elementos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tupla: ('TOTS3.SA', '^BVSP', 'PETR3.SA', 'MGLU3.SA', 'HAPV3.SA') 
+ Classe: &lt;class 'tuple'&gt; 
+ Comprimento: 5 elementos</code></pre>
+</div>
+</div>
+<section id="características" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="características"><span class="header-section-number">3.1.1</span> Características</h3>
+<p>1 - <strong>Imutabilidade:</strong> Você não pode modificar os elementos de uma tupla após criá-la. Isso as torna úteis para representar dados que não devem ser alterados acidentalmente;</p>
+<div id="a16f713b" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>: </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  tickers_tupla.append(<span class="st">'BBDC4.SA'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  traceback_str <span class="op">=</span> traceback.format_exc()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(traceback_str)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Traceback (most recent call last):
+  File "C:\Users\devsc\AppData\Local\Temp\ipykernel_18456\3012323940.py", line 2, in &lt;module&gt;
+    tickers_tupla.append('BBDC4.SA')
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'tuple' object has no attribute 'append'
+</code></pre>
+</div>
+</div>
+<p>2 - <strong>Indexação:</strong> Assim como as listas, os elementos de uma tupla podem ser acessados por meio de índices. O índice <strong>começa em 0</strong> para o primeiro elemento;</p>
+<div id="0976cfbd" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1º Elemento:"</span>, tickers_tupla[<span class="dv">0</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2º Elemento:"</span>, tickers_tupla[<span class="dv">1</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"3º Elemento:"</span>, tickers_tupla[<span class="op">-</span><span class="dv">3</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1º Elemento: TOTS3.SA 
+ 2º Elemento: ^BVSP 
+ 3º Elemento: PETR3.SA 
+</code></pre>
+</div>
+</div>
+<p>3 - <strong>Comprimento Fixo:</strong> Uma vez que você cria uma tupla com um determinado número de elementos, esse número não pode ser alterado. <strong>Você não pode adicionar ou remover elementos</strong>;</p>
+<p>4 - <strong>Uso de Parênteses Opcionais:</strong> Embora seja comum usar <strong>parênteses</strong> para criar uma tupla, eles não são estritamente necessários. Os elementos podem ser separados apenas por vírgulas, mas os parênteses podem ajudar a melhorar a clareza do código.</p>
+<div id="883bc2d8" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tickers_tupla <span class="op">=</span> <span class="st">'TOTS3.SA'</span>, <span class="st">'^BVSP'</span>, <span class="st">'PETR3.SA'</span>, <span class="st">'MGLU3.SA'</span>, <span class="st">'HAPV3.SA'</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>comprimento_tupla <span class="op">=</span> <span class="bu">len</span>(tickers_tupla)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tupla:"</span>, tickers_tupla, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_tupla), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Comprimento:"</span>, comprimento_tupla, <span class="st">"elementos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tupla: ('TOTS3.SA', '^BVSP', 'PETR3.SA', 'MGLU3.SA', 'HAPV3.SA') 
+ Classe: &lt;class 'tuple'&gt; 
+ Comprimento: 5 elementos</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="listas" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="listas"><span class="header-section-number">3.2</span> Listas</h2>
+<p>Uma lista é uma estrutura de dados que permite armazenar uma coleção ordenada de elementos. Esses elementos podem ser de qualquer tipo de dado, como <strong>números, strings, booleanos</strong> e até outras listas. As <strong>listas são mutáveis</strong>, o que significa que você pode adicionar, remover ou modificar elementos após a criação da lista.</p>
+<section id="caraterísticas" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="caraterísticas"><span class="header-section-number">3.2.1</span> Caraterísticas</h3>
+<p>1 - <strong>Mutabilidade:</strong> Ao contrário das tuplas, você pode modificar, adicionar ou remover elementos de uma lista após criá-la.</p>
+<div id="5cacaf4a" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tickers_lista <span class="op">=</span> [<span class="st">'TOTS3.SA'</span>, <span class="st">'^BVSP'</span>, <span class="st">'PETR3.SA'</span>, <span class="st">'MGLU3.SA'</span>, <span class="st">'HAPV3.SA'</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lista:"</span>, tickers_lista, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_lista), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Comprimento:"</span>, <span class="bu">len</span>(tickers_lista), <span class="st">"elementos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Lista: ['TOTS3.SA', '^BVSP', 'PETR3.SA', 'MGLU3.SA', 'HAPV3.SA'] 
+ Classe: &lt;class 'list'&gt; 
+ Comprimento: 5 elementos</code></pre>
+</div>
+</div>
+<p>2 - <strong>Indexação:</strong> Os elementos de uma lista podem ser acessados usando índices. O índice <strong>começa em 0</strong> para o primeiro elemento.</p>
+<div id="01ebb875" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1º Elemento:"</span>, tickers_lista[<span class="dv">0</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2º Elemento:"</span>, tickers_lista[<span class="dv">1</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"3º Elemento:"</span>, tickers_lista[<span class="op">-</span><span class="dv">3</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1º Elemento: TOTS3.SA 
+ 2º Elemento: ^BVSP 
+ 3º Elemento: PETR3.SA 
+</code></pre>
+</div>
+</div>
+<p>3 - <strong>Comprimento Variável:</strong> Você pode adicionar ou remover elementos de uma lista a qualquer momento, alterando o seu comprimento.</p>
+<div id="986d1fb2" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>: </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  tickers_lista.append(<span class="st">'BRSR6.SA'</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  traceback_str <span class="op">=</span> traceback.format_exc()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(traceback_str)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lista:"</span>, tickers_lista, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_lista), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Comprimento:"</span>, <span class="bu">len</span>(tickers_lista), <span class="st">"elementos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Lista: ['TOTS3.SA', '^BVSP', 'PETR3.SA', 'MGLU3.SA', 'HAPV3.SA', 'BRSR6.SA'] 
+ Classe: &lt;class 'list'&gt; 
+ Comprimento: 6 elementos</code></pre>
+</div>
+</div>
+</section>
+<section id="tuplas-e-listas" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="tuplas-e-listas"><span class="header-section-number">3.2.2</span> Tuplas e listas</h3>
+<p>Utilizar uma tupla depois transformar em lista.</p>
+<div id="d106195d" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tickers_tupla <span class="op">=</span> (<span class="st">'TOTS3.SA'</span>, <span class="st">'^BVSP'</span>, <span class="st">'PETR3.SA'</span>, <span class="st">'MGLU3.SA'</span>, <span class="st">'HAPV3.SA'</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>tickers <span class="op">=</span> <span class="bu">list</span>(tickers_tupla)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tickers, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['TOTS3.SA', '^BVSP', 'PETR3.SA', 'MGLU3.SA', 'HAPV3.SA'] 
+ Classe: &lt;class 'list'&gt;</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="conjuntos" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="conjuntos"><span class="header-section-number">3.3</span> Conjuntos</h2>
+<p>Em Python, <strong>um conjunto (set)</strong> é uma coleção não ordenada e mutável de elementos únicos. Os conjuntos são definidos usando chaves {} e podem conter elementos de diferentes tipos de dados. A principal característica dos conjuntos é que eles não aceitam elementos duplicados.</p>
+<section id="caraterísticas-1" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="caraterísticas-1"><span class="header-section-number">3.3.1</span> Caraterísticas</h3>
+<p>1 - <strong>Coleção Não Ordenada:</strong> Os elementos em um conjunto não têm uma ordem específica. Quando você itera sobre um conjunto, a ordem em que os elementos são retornados pode variar.</p>
+<div id="17b150ac" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>elementos_conjunto <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">2</span>}</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Conjunto:"</span>, elementos_conjunto, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(elementos_conjunto), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Comprimento:"</span>, <span class="bu">len</span>(elementos_conjunto), <span class="st">"elementos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Conjunto: {1, 2, 3, 5} 
+ Classe: &lt;class 'set'&gt; 
+ Comprimento: 4 elementos</code></pre>
+</div>
+</div>
+<p>2 - <strong>Elementos Únicos:</strong> Um conjunto não pode conter elementos duplicados. Se você tentar adicionar um elemento que já está presente no conjunto, a segunda tentativa será ignorada.</p>
+<div id="99ab81d1" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tickers_conjunto <span class="op">=</span> {<span class="st">'TOTS3.SA'</span>, <span class="st">'^BVSP'</span>, <span class="st">'PETR3.SA'</span>, <span class="st">'MGLU3.SA'</span>, <span class="st">'HAPV3.SA'</span>, <span class="st">'HAPV3.SA'</span>}</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Conjunto:"</span>, tickers_conjunto, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_conjunto), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Comprimento:"</span>, <span class="bu">len</span>(tickers_conjunto), <span class="st">"elementos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Conjunto: {'^BVSP', 'HAPV3.SA', 'TOTS3.SA', 'PETR3.SA', 'MGLU3.SA'} 
+ Classe: &lt;class 'set'&gt; 
+ Comprimento: 5 elementos</code></pre>
+</div>
+</div>
+<p>3 - <strong>Mutabilidade:</strong> Os conjuntos são mutáveis, o que significa que você pode adicionar e remover elementos após a criação do conjunto. No entanto, os próprios conjuntos são objetos mutáveis.</p>
+<div id="500577cf" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>: </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  tickers_conjunto.add(<span class="st">'BBDC4.SA'</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  traceback_str <span class="op">=</span> traceback.format_exc()</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(traceback_str)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lista:"</span>, tickers_conjunto, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_conjunto), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Comprimento:"</span>, <span class="bu">len</span>(tickers_conjunto), <span class="st">"elementos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Lista: {'^BVSP', 'HAPV3.SA', 'TOTS3.SA', 'PETR3.SA', 'MGLU3.SA', 'BBDC4.SA'} 
+ Classe: &lt;class 'set'&gt; 
+ Comprimento: 6 elementos</code></pre>
+</div>
+</div>
+<p>Os conjuntos fornecem métodos úteis para adicionar elementos (add()), remover elementos (remove(), discard()), verificar a existência de um elemento (in), limpar todos os elementos (clear()), entre outros.</p>
+<p>4 - <strong>Imutabilidade de Elementos:</strong> Embora os conjuntos em si sejam mutáveis, os elementos contidos no conjunto devem ser imutáveis. Por exemplo, você pode ter strings, números ou tuplas como elementos de um conjunto, mas não pode ter listas, que são mutáveis.</p>
+<div id="9ce2f05f" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>: </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  tickers_conjunto <span class="op">=</span> {tickers_lista}</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  traceback_str <span class="op">=</span> traceback.format_exc()</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(traceback_str)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Traceback (most recent call last):
+  File "C:\Users\devsc\AppData\Local\Temp\ipykernel_18456\825717340.py", line 2, in &lt;module&gt;
+    tickers_conjunto = {tickers_lista}
+                       ^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+</code></pre>
+</div>
+</div>
+<p>5 - <strong>Iterável:</strong> Você pode iterar facilmente sobre os elementos de um conjunto usando um <strong>loop for</strong> (cenas para próxima aula).</p>
+</section>
+</section>
+<section id="dicionários" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="dicionários"><span class="header-section-number">3.4</span> Dicionários</h2>
+<p>Em Python, um dicionário é uma estrutura de dados que permite armazenar pares chave-valor. Ele é semelhante a uma lista, mas em vez de acessar elementos por índices numéricos, você os acessa por chaves. Dicionários são implementados como tabelas de dispersão, proporcionando acesso rápido e eficiente aos valores associados a cada chave.</p>
+<section id="caraterísticas-2" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="caraterísticas-2"><span class="header-section-number">3.4.1</span> Caraterísticas</h3>
+<p>1 - <strong>Chaves Únicas:</strong> Cada chave em um dicionário é única, o que significa que não pode haver chaves duplicadas. Se você tentar adicionar uma chave que já existe, o valor associado à chave será atualizado.</p>
+<p>2 - <strong>Sintaxe de Chaves e Dois-Pontos:</strong> A sintaxe para definir um dicionário usa chaves ({}) e dois-pontos (:) para indicar os pares chave-valor. Por exemplo: meu_dicionario = {‘chave1’: ‘valor1’, ‘chave2’: Valor2}.</p>
+<div id="4db68487" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tickers_dict <span class="op">=</span> {<span class="st">"Ticker"</span>: <span class="st">"BBDC4.SA"</span>, <span class="st">"Nome da Empresa"</span>: <span class="st">"Banrisul"</span>}</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dicionário:"</span>, tickers_dict, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_dict), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Comprimento:"</span>, <span class="bu">len</span>(tickers_dict), <span class="st">"elementos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dicionário: {'Ticker': 'BBDC4.SA', 'Nome da Empresa': 'Banrisul'} 
+ Classe: &lt;class 'dict'&gt; 
+ Comprimento: 2 elementos</code></pre>
+</div>
+</div>
+<p>3 - <strong>Acesso por Chave:</strong> Você acessa os valores em um dicionário usando suas chaves.</p>
+<div id="849f2c05" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1º Elemento:"</span>, tickers_dict[<span class="st">"Ticker"</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2º Elemento:"</span>, tickers_dict[<span class="st">"Nome da Empresa"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1º Elemento: BBDC4.SA 
+ 2º Elemento: Banrisul</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./aula_02.html" class="pagination-link" aria-label="Operadores Lógicos e Operadores de Comparação">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Operadores Lógicos e Operadores de Comparação</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./aula_04.html" class="pagination-link" aria-label="Funções">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funções</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><img src="img/Logo_Grande_DevSci_Sem_Fundo.png" class="img-fluid" style="width:15.0%"> <br> DevSci Space <br></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
