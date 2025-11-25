@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 2b0fbee7-7b4c-4d8b-a11d-5002ae52e6b5
+      url: https://resplendent-crepe-05182c.netlify.app

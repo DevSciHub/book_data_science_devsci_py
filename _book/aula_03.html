@@ -246,13 +246,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="8db9fad8" class="cell" data-execution_count="1">
+<div id="0d8f0383" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> traceback</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="tuplas-em-python" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="tuplas-em-python"><span class="header-section-number">3.1</span> Tuplas em Python</h2>
 <p>Em Python, uma tupla é uma estrutura de dados semelhante a uma lista, mas com uma diferença fundamental: as <strong>tuplas são imutáveis</strong>, uma vez que você criar uma tupla <strong>não poderá alterar seus elementos ou adicionar/remover elementos</strong>. As tuplas são definidas por uma sequência ordenada de elementos entre parênteses e separados por vírgulas.</p>
-<div id="eed01e7f" class="cell" data-execution_count="2">
+<div id="d1c8039c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tickers_tupla <span class="op">=</span> (<span class="st">'TOTS3.SA'</span>, <span class="st">'^BVSP'</span>, <span class="st">'PETR3.SA'</span>, <span class="st">'MGLU3.SA'</span>, <span class="st">'HAPV3.SA'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>comprimento_tupla <span class="op">=</span> <span class="bu">len</span>(tickers_tupla)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tupla:"</span>, tickers_tupla, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
@@ -267,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="características" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="características"><span class="header-section-number">3.1.1</span> Características</h3>
 <p>1 - <strong>Imutabilidade:</strong> Você não pode modificar os elementos de uma tupla após criá-la. Isso as torna úteis para representar dados que não devem ser alterados acidentalmente;</p>
-<div id="a16f713b" class="cell" data-execution_count="3">
+<div id="a48ac106" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>: </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  tickers_tupla.append(<span class="st">'BBDC4.SA'</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
@@ -275,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(traceback_str)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Traceback (most recent call last):
-  File "C:\Users\devsc\AppData\Local\Temp\ipykernel_18456\3012323940.py", line 2, in &lt;module&gt;
+  File "C:\Users\devsc\AppData\Local\Temp\ipykernel_3752\3012323940.py", line 2, in &lt;module&gt;
     tickers_tupla.append('BBDC4.SA')
     ^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'tuple' object has no attribute 'append'
@@ -283,7 +283,7 @@ AttributeError: 'tuple' object has no attribute 'append'
 </div>
 </div>
 <p>2 - <strong>Indexação:</strong> Assim como as listas, os elementos de uma tupla podem ser acessados por meio de índices. O índice <strong>começa em 0</strong> para o primeiro elemento;</p>
-<div id="0976cfbd" class="cell" data-execution_count="4">
+<div id="b6a4a859" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1º Elemento:"</span>, tickers_tupla[<span class="dv">0</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2º Elemento:"</span>, tickers_tupla[<span class="dv">1</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"3º Elemento:"</span>, tickers_tupla[<span class="op">-</span><span class="dv">3</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -296,7 +296,7 @@ AttributeError: 'tuple' object has no attribute 'append'
 </div>
 <p>3 - <strong>Comprimento Fixo:</strong> Uma vez que você cria uma tupla com um determinado número de elementos, esse número não pode ser alterado. <strong>Você não pode adicionar ou remover elementos</strong>;</p>
 <p>4 - <strong>Uso de Parênteses Opcionais:</strong> Embora seja comum usar <strong>parênteses</strong> para criar uma tupla, eles não são estritamente necessários. Os elementos podem ser separados apenas por vírgulas, mas os parênteses podem ajudar a melhorar a clareza do código.</p>
-<div id="883bc2d8" class="cell" data-execution_count="5">
+<div id="c8fccd8b" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tickers_tupla <span class="op">=</span> <span class="st">'TOTS3.SA'</span>, <span class="st">'^BVSP'</span>, <span class="st">'PETR3.SA'</span>, <span class="st">'MGLU3.SA'</span>, <span class="st">'HAPV3.SA'</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>comprimento_tupla <span class="op">=</span> <span class="bu">len</span>(tickers_tupla)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tupla:"</span>, tickers_tupla, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
@@ -316,7 +316,7 @@ AttributeError: 'tuple' object has no attribute 'append'
 <section id="caraterísticas" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="caraterísticas"><span class="header-section-number">3.2.1</span> Caraterísticas</h3>
 <p>1 - <strong>Mutabilidade:</strong> Ao contrário das tuplas, você pode modificar, adicionar ou remover elementos de uma lista após criá-la.</p>
-<div id="5cacaf4a" class="cell" data-execution_count="6">
+<div id="b4f72531" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tickers_lista <span class="op">=</span> [<span class="st">'TOTS3.SA'</span>, <span class="st">'^BVSP'</span>, <span class="st">'PETR3.SA'</span>, <span class="st">'MGLU3.SA'</span>, <span class="st">'HAPV3.SA'</span>]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lista:"</span>, tickers_lista, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_lista), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
@@ -328,7 +328,7 @@ AttributeError: 'tuple' object has no attribute 'append'
 </div>
 </div>
 <p>2 - <strong>Indexação:</strong> Os elementos de uma lista podem ser acessados usando índices. O índice <strong>começa em 0</strong> para o primeiro elemento.</p>
-<div id="01ebb875" class="cell" data-execution_count="7">
+<div id="8473bb16" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1º Elemento:"</span>, tickers_lista[<span class="dv">0</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2º Elemento:"</span>, tickers_lista[<span class="dv">1</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"3º Elemento:"</span>, tickers_lista[<span class="op">-</span><span class="dv">3</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -340,7 +340,7 @@ AttributeError: 'tuple' object has no attribute 'append'
 </div>
 </div>
 <p>3 - <strong>Comprimento Variável:</strong> Você pode adicionar ou remover elementos de uma lista a qualquer momento, alterando o seu comprimento.</p>
-<div id="986d1fb2" class="cell" data-execution_count="8">
+<div id="0bcd540c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>: </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  tickers_lista.append(<span class="st">'BRSR6.SA'</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
@@ -360,7 +360,7 @@ AttributeError: 'tuple' object has no attribute 'append'
 <section id="tuplas-e-listas" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="tuplas-e-listas"><span class="header-section-number">3.2.2</span> Tuplas e listas</h3>
 <p>Utilizar uma tupla depois transformar em lista.</p>
-<div id="d106195d" class="cell" data-execution_count="9">
+<div id="a896f469" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tickers_tupla <span class="op">=</span> (<span class="st">'TOTS3.SA'</span>, <span class="st">'^BVSP'</span>, <span class="st">'PETR3.SA'</span>, <span class="st">'MGLU3.SA'</span>, <span class="st">'HAPV3.SA'</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>tickers <span class="op">=</span> <span class="bu">list</span>(tickers_tupla)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tickers, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -377,7 +377,7 @@ AttributeError: 'tuple' object has no attribute 'append'
 <section id="caraterísticas-1" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="caraterísticas-1"><span class="header-section-number">3.3.1</span> Caraterísticas</h3>
 <p>1 - <strong>Coleção Não Ordenada:</strong> Os elementos em um conjunto não têm uma ordem específica. Quando você itera sobre um conjunto, a ordem em que os elementos são retornados pode variar.</p>
-<div id="17b150ac" class="cell" data-execution_count="10">
+<div id="6c70a936" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>elementos_conjunto <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">2</span>}</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Conjunto:"</span>, elementos_conjunto, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(elementos_conjunto), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
@@ -389,19 +389,19 @@ AttributeError: 'tuple' object has no attribute 'append'
 </div>
 </div>
 <p>2 - <strong>Elementos Únicos:</strong> Um conjunto não pode conter elementos duplicados. Se você tentar adicionar um elemento que já está presente no conjunto, a segunda tentativa será ignorada.</p>
-<div id="99ab81d1" class="cell" data-execution_count="11">
+<div id="4a13d152" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tickers_conjunto <span class="op">=</span> {<span class="st">'TOTS3.SA'</span>, <span class="st">'^BVSP'</span>, <span class="st">'PETR3.SA'</span>, <span class="st">'MGLU3.SA'</span>, <span class="st">'HAPV3.SA'</span>, <span class="st">'HAPV3.SA'</span>}</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Conjunto:"</span>, tickers_conjunto, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_conjunto), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Comprimento:"</span>, <span class="bu">len</span>(tickers_conjunto), <span class="st">"elementos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Conjunto: {'^BVSP', 'HAPV3.SA', 'TOTS3.SA', 'PETR3.SA', 'MGLU3.SA'} 
+<pre><code>Conjunto: {'^BVSP', 'HAPV3.SA', 'PETR3.SA', 'TOTS3.SA', 'MGLU3.SA'} 
  Classe: &lt;class 'set'&gt; 
  Comprimento: 5 elementos</code></pre>
 </div>
 </div>
 <p>3 - <strong>Mutabilidade:</strong> Os conjuntos são mutáveis, o que significa que você pode adicionar e remover elementos após a criação do conjunto. No entanto, os próprios conjuntos são objetos mutáveis.</p>
-<div id="500577cf" class="cell" data-execution_count="12">
+<div id="f77d7654" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>: </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  tickers_conjunto.add(<span class="st">'BBDC4.SA'</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
@@ -412,14 +412,14 @@ AttributeError: 'tuple' object has no attribute 'append'
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_conjunto), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Comprimento:"</span>, <span class="bu">len</span>(tickers_conjunto), <span class="st">"elementos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Lista: {'^BVSP', 'HAPV3.SA', 'TOTS3.SA', 'PETR3.SA', 'MGLU3.SA', 'BBDC4.SA'} 
+<pre><code>Lista: {'^BVSP', 'HAPV3.SA', 'PETR3.SA', 'BBDC4.SA', 'TOTS3.SA', 'MGLU3.SA'} 
  Classe: &lt;class 'set'&gt; 
  Comprimento: 6 elementos</code></pre>
 </div>
 </div>
 <p>Os conjuntos fornecem métodos úteis para adicionar elementos (add()), remover elementos (remove(), discard()), verificar a existência de um elemento (in), limpar todos os elementos (clear()), entre outros.</p>
 <p>4 - <strong>Imutabilidade de Elementos:</strong> Embora os conjuntos em si sejam mutáveis, os elementos contidos no conjunto devem ser imutáveis. Por exemplo, você pode ter strings, números ou tuplas como elementos de um conjunto, mas não pode ter listas, que são mutáveis.</p>
-<div id="9ce2f05f" class="cell" data-execution_count="13">
+<div id="e02036d3" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>: </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  tickers_conjunto <span class="op">=</span> {tickers_lista}</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
@@ -427,7 +427,7 @@ AttributeError: 'tuple' object has no attribute 'append'
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(traceback_str)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Traceback (most recent call last):
-  File "C:\Users\devsc\AppData\Local\Temp\ipykernel_18456\825717340.py", line 2, in &lt;module&gt;
+  File "C:\Users\devsc\AppData\Local\Temp\ipykernel_3752\825717340.py", line 2, in &lt;module&gt;
     tickers_conjunto = {tickers_lista}
                        ^^^^^^^^^^^^^^^
 TypeError: unhashable type: 'list'
@@ -444,7 +444,7 @@ TypeError: unhashable type: 'list'
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="caraterísticas-2"><span class="header-section-number">3.4.1</span> Caraterísticas</h3>
 <p>1 - <strong>Chaves Únicas:</strong> Cada chave em um dicionário é única, o que significa que não pode haver chaves duplicadas. Se você tentar adicionar uma chave que já existe, o valor associado à chave será atualizado.</p>
 <p>2 - <strong>Sintaxe de Chaves e Dois-Pontos:</strong> A sintaxe para definir um dicionário usa chaves ({}) e dois-pontos (:) para indicar os pares chave-valor. Por exemplo: meu_dicionario = {‘chave1’: ‘valor1’, ‘chave2’: Valor2}.</p>
-<div id="4db68487" class="cell" data-execution_count="14">
+<div id="f19fab84" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tickers_dict <span class="op">=</span> {<span class="st">"Ticker"</span>: <span class="st">"BBDC4.SA"</span>, <span class="st">"Nome da Empresa"</span>: <span class="st">"Banrisul"</span>}</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dicionário:"</span>, tickers_dict, <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Classe:"</span>, <span class="bu">type</span>(tickers_dict), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
@@ -456,7 +456,7 @@ TypeError: unhashable type: 'list'
 </div>
 </div>
 <p>3 - <strong>Acesso por Chave:</strong> Você acessa os valores em um dicionário usando suas chaves.</p>
-<div id="849f2c05" class="cell" data-execution_count="15">
+<div id="36667f09" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1º Elemento:"</span>, tickers_dict[<span class="st">"Ticker"</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>,</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>      <span class="st">"2º Elemento:"</span>, tickers_dict[<span class="st">"Nome da Empresa"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
